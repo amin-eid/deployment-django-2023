@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent">
+    <form method="post" action="/register">
+        {%csrf_token%}
+        <p>First Name:<input type="text" name="fname"></p>
+        <p>Last Name:<input type="text" name="lname"></p>
+        <p>Email :<input type="text" name="email"></p>
+        <p>Password:<input type="password" name="password"></p>
+        <p>Confirm:<input type="password" name="confirm"></p>
+        <p><input type="submit" value="Register!"></p>
+    </form>
+    <form method="post" action="/login">
+        {%csrf_token%}
+        <p>Email:<input type="text" name="email"></p>
+        <p>Password:<input type="password" name="password"></p>
+        <p><input type="submit" value="Login!"></p>
+    </form>
+
+
+</div>
+{% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
